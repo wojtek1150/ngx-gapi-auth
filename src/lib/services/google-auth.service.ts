@@ -24,7 +24,7 @@ export class GoogleAuthService {
   ) {
 
 
-    if (this.googleApiLoaderService.getConfig().isMockedState()) {
+    if (this.googleApiLoaderService.isMocked()) {
       this.signIn();
     } else {
       this.googleApiLoaderService.onLoad().subscribe(() => {
@@ -44,7 +44,7 @@ export class GoogleAuthService {
   }
 
   public signIn(): void {
-    if (this.googleApiLoaderService.getConfig().isMockedState()) {
+    if (this.googleApiLoaderService.isMocked()) {
       this._authState.next(JSON.parse(localStorage.getItem('user')));
     } else {
       this.auth.signIn({
@@ -56,7 +56,7 @@ export class GoogleAuthService {
   }
 
   public signOut(): void {
-    if (!this.googleApiLoaderService.getConfig().isMockedState()) {
+    if (!this.googleApiLoaderService.isMocked()) {
       this.auth.signOut();
     }
     this._authState.next(null);

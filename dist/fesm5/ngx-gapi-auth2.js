@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/config/google-api.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -70,17 +71,18 @@ if (false) {
     NgGapiClientConfig.prototype.discoveryDocs;
 }
 var GoogleApiConfig = /** @class */ (function () {
-    function GoogleApiConfig(clientConfig) {
-        this.clientConfig = clientConfig;
+    function GoogleApiConfig(config) {
+        this.clientConfig = config;
+        this.mocked = config.e2e;
     }
     /**
      * @return {?}
      */
-    GoogleApiConfig.prototype.isMockedState = /**
+    GoogleApiConfig.prototype.getMocked = /**
      * @return {?}
      */
     function () {
-        return this.clientConfig.e2e;
+        return this.mocked;
     };
     /**
      * @return {?}
@@ -99,11 +101,17 @@ if (false) {
      * @protected
      */
     GoogleApiConfig.prototype.clientConfig;
+    /**
+     * @type {?}
+     * @protected
+     */
+    GoogleApiConfig.prototype.mocked;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/models/auth.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var AuthUser = /** @class */ (function () {
     function AuthUser(id, firstName, lastName, email, avatar, idToken, tokenExpiresAt) {
@@ -136,7 +144,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-api-loader.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 var NG_GAPI_CONFIG = new InjectionToken('ng-gapi.config');
@@ -163,6 +172,15 @@ var GoogleApiLoaderService = /** @class */ (function () {
      */
     function () {
         return this.config;
+    };
+    /**
+     * @return {?}
+     */
+    GoogleApiLoaderService.prototype.isMocked = /**
+     * @return {?}
+     */
+    function () {
+        return this.config.getMocked();
     };
     /**
      * @private
@@ -218,7 +236,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-auth2-loader.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GoogleAuth2LoaderService = /** @class */ (function () {
     function GoogleAuth2LoaderService(googleApi) {
@@ -311,7 +330,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-auth.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GoogleAuthService = /** @class */ (function () {
     function GoogleAuthService(googleAuth2LoaderService, googleApiLoaderService, ngZone) {
@@ -320,7 +340,7 @@ var GoogleAuthService = /** @class */ (function () {
         this.googleApiLoaderService = googleApiLoaderService;
         this.ngZone = ngZone;
         this._authState = new ReplaySubject(1);
-        if (this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (this.googleApiLoaderService.isMocked()) {
             this.signIn();
         }
         else {
@@ -366,7 +386,7 @@ var GoogleAuthService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (this.googleApiLoaderService.isMocked()) {
             this._authState.next(JSON.parse(localStorage.getItem('user')));
         }
         else {
@@ -384,7 +404,7 @@ var GoogleAuthService = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        if (!this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (!this.googleApiLoaderService.isMocked()) {
             this.auth.signOut();
         }
         this._authState.next(null);
@@ -474,7 +494,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/common-util-google-oauth.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var GoogleOauthModule = /** @class */ (function () {
     function GoogleOauthModule() {
@@ -508,12 +529,14 @@ var GoogleOauthModule = /** @class */ (function () {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: ngx-gapi-auth2.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { AuthUser, GoogleApiConfig, GoogleApiLoaderService, GoogleAuth2LoaderService, GoogleAuthService, GoogleOauthModule, NG_GAPI_CONFIG };

@@ -1,8 +1,12 @@
 {
   "name": "ngx-gapi-auth2",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Wojciech Parys"
+  },
+  "scripts": {
+    "start": "ng serve",
+    "build": "ng build"
   },
   "description": "This module will add the Google Api with OAuth2 to your project.",
   "repository": {
@@ -22,8 +26,27 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@types/gapi.auth2": "^0.0.51"
+    "@angular/common": "8.2.14",
+    "@angular/compiler": "8.2.14",
+    "@angular/core": "8.2.14",
+    "@types/gapi.auth2": "0.0.51",
+    "core-js": "2.5.4",
+    "rxjs": "6.5.4",
+    "zone.js": "0.9.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "0.803.23",
+    "@angular-devkit/build-ng-packagr": "0.801.1",
+    "@angular/cli": "8.3.23",
+    "@angular/compiler-cli": "8.2.14",
+    "@types/node": "8.9.4",
+    "ng-packagr": "^5.7.1",
+    "codelyzer": "~5.0.1",
+    "eslint": "6.1.0",
+    "prettier": "1.18.2",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "tsickle": ">=0.34.0",
+    "typescript": "~3.5.3"
   }
 }

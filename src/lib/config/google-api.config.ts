@@ -59,13 +59,15 @@ export interface NgGapiClientConfig {
 
 export class GoogleApiConfig {
   protected clientConfig: NgGapiClientConfig;
+  protected mocked: boolean;
 
-  constructor(clientConfig: NgGapiClientConfig) {
-    this.clientConfig = clientConfig;
+  constructor(config: NgGapiClientConfig) {
+    this.clientConfig = config;
+    this.mocked = config.e2e;
   }
 
-  public isMockedState(): boolean {
-    return this.clientConfig.e2e;
+  public getMocked(): boolean {
+    return this.mocked;
   }
 
   public getClientConfig(): NgGapiClientConfig {

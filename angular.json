@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "projects": {
+    "ngx-gapi-auth2": {
+      "projectType": "library",
+      "root": ".",
+      "sourceRoot": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "tsconfig.lib.json",
+            "project": "ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.lib.json",
+              "tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!**"
+            ]
+          }
+        }
+      },
+      "schematics": {}
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefixInterfaces": false,
+      "inline": {
+        "style": false,
+        "template": false
+      },
+      "generate": {
+        "flat": false
+      },
+      "prefix": "",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": ""
+    }
+  },
+  "defaultProject": "ngx-gapi-auth2"
+}

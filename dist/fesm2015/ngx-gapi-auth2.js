@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/config/google-api.config.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -71,16 +72,17 @@ if (false) {
 }
 class GoogleApiConfig {
     /**
-     * @param {?} clientConfig
+     * @param {?} config
      */
-    constructor(clientConfig) {
-        this.clientConfig = clientConfig;
+    constructor(config) {
+        this.clientConfig = config;
+        this.mocked = config.e2e;
     }
     /**
      * @return {?}
      */
-    isMockedState() {
-        return this.clientConfig.e2e;
+    getMocked() {
+        return this.mocked;
     }
     /**
      * @return {?}
@@ -95,11 +97,17 @@ if (false) {
      * @protected
      */
     GoogleApiConfig.prototype.clientConfig;
+    /**
+     * @type {?}
+     * @protected
+     */
+    GoogleApiConfig.prototype.mocked;
 }
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/models/auth.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class AuthUser {
     /**
@@ -140,7 +148,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-api-loader.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 let NG_GAPI_CONFIG = new InjectionToken('ng-gapi.config');
@@ -164,6 +173,12 @@ class GoogleApiLoaderService {
      */
     getConfig() {
         return this.config;
+    }
+    /**
+     * @return {?}
+     */
+    isMocked() {
+        return this.config.getMocked();
     }
     /**
      * @private
@@ -213,7 +228,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-auth2-loader.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GoogleAuth2LoaderService {
     /**
@@ -296,7 +312,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/services/google-auth.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GoogleAuthService {
     /**
@@ -309,7 +326,7 @@ class GoogleAuthService {
         this.googleApiLoaderService = googleApiLoaderService;
         this.ngZone = ngZone;
         this._authState = new ReplaySubject(1);
-        if (this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (this.googleApiLoaderService.isMocked()) {
             this.signIn();
         }
         else {
@@ -348,7 +365,7 @@ class GoogleAuthService {
      * @return {?}
      */
     signIn() {
-        if (this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (this.googleApiLoaderService.isMocked()) {
             this._authState.next(JSON.parse(localStorage.getItem('user')));
         }
         else {
@@ -363,7 +380,7 @@ class GoogleAuthService {
      * @return {?}
      */
     signOut() {
-        if (!this.googleApiLoaderService.getConfig().isMockedState()) {
+        if (!this.googleApiLoaderService.isMocked()) {
             this.auth.signOut();
         }
         this._authState.next(null);
@@ -442,7 +459,8 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: lib/common-util-google-oauth.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class GoogleOauthModule {
     /**
@@ -469,12 +487,14 @@ GoogleOauthModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated from: ngx-gapi-auth2.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { AuthUser, GoogleApiConfig, GoogleApiLoaderService, GoogleAuth2LoaderService, GoogleAuthService, GoogleOauthModule, NG_GAPI_CONFIG };

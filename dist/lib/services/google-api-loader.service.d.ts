@@ -8,5 +8,6 @@ export declare class GoogleApiLoaderService {
     constructor(config: NgGapiClientConfig);
     onLoad(): Observable<boolean>;
     getConfig(): GoogleApiConfig;
+    isMocked(): boolean;
     private loadGapi;
 }

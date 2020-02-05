@@ -23,6 +23,11 @@ export class GoogleApiLoaderService {
     return this.config;
   }
 
+  public isMocked(): boolean {
+    return this.config.getMocked();
+  }
+
+
   private loadGapi(): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
       let node = document.createElement('script');
