@@ -50,8 +50,8 @@ export class GoogleAuthService {
       const config = this.googleApiLoaderService.getConfig().getClientConfig();
       this.auth.signIn({
         prompt: 'select_account',
-        ux_mode: config.ux_mode,
-        redirect_uri: config.redirect_uri
+        ux_mode: (config.ux_mode) ? config.ux_mode : 'popup',
+        redirect_uri: (config.redirect_uri) ? config.redirect_uri : window.location.origin
       });
     }
   }
