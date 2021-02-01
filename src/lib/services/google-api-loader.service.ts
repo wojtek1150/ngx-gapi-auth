@@ -30,10 +30,9 @@ export class GoogleApiLoaderService {
 
   private loadGapi(): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {
-      let node = document.createElement('script');
+      const node = document.createElement('script');
       node.src = this.gapiUrl;
       node.type = 'text/javascript';
-      node.charset = 'utf-8';
       document.getElementsByTagName('head')[0].appendChild(node);
       node.onload = () => {
         observer.next(true);

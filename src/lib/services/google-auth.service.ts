@@ -47,10 +47,11 @@ export class GoogleAuthService {
     if (this.googleApiLoaderService.isMocked()) {
       this._authState.next(JSON.parse(localStorage.getItem('user')));
     } else {
+      const config = this.googleApiLoaderService.getConfig().getClientConfig();
       this.auth.signIn({
         prompt: 'select_account',
-        ux_mode: 'redirect',
-        redirect_uri: window.location.origin
+        ux_mode: (config.ux_mode) ? config.ux_mode : 'popup',
+        redirect_uri: (config.redirect_uri) ? config.redirect_uri : window.location.origin
       });
     }
   }
