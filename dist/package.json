@@ -1,0 +1,42 @@
+{
+  "name": "ngx-gapi-auth2",
+  "version": "1.2.1",
+  "author": {
+    "name": "Wojciech Parys"
+  },
+  "description": "This module will add the Google Api with OAuth2 to your project.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wojtek1150/ngx-gapi-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wojtek1150/ngx-gapi-auth/issues"
+  },
+  "homepage": "https://github.com/wojtek1150/ngx-gapi-auth",
+  "keywords": [
+    "angular",
+    "gapi",
+    "oauth2",
+    "typescript",
+    "javascript"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@types/gapi.auth2": "0.0.54",
+    "@types/gapi": "0.0.39",
+    "rxjs": "6.6.3"
+  },
+  "main": "bundles/ngx-gapi-auth2.umd.js",
+  "module": "fesm2015/ngx-gapi-auth2.js",
+  "es2015": "fesm2015/ngx-gapi-auth2.js",
+  "esm2015": "esm2015/ngx-gapi-auth2.js",
+  "fesm2015": "fesm2015/ngx-gapi-auth2.js",
+  "typings": "ngx-gapi-auth2.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}
