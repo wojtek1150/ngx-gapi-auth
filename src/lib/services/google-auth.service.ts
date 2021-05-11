@@ -1,7 +1,7 @@
+/// <reference types="gapi.auth2" />
 import { Injectable, NgZone } from '@angular/core';
 import { interval, Observable, ReplaySubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
 
 import { GoogleAuth2LoaderService } from './google-auth2-loader.service';
 import { GoogleApiLoaderService } from './google-api-loader.service';

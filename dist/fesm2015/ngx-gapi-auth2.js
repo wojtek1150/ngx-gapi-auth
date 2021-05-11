@@ -1,5 +1,4 @@
-import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
+import { InjectionToken, Injectable, Inject, NgZone, NgModule } from '@angular/core';
 import { Observable, of, ReplaySubject, interval } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -58,14 +57,13 @@ class GoogleApiLoaderService {
         });
     }
 }
-/** @nocollapse */ GoogleApiLoaderService.ɵfac = function GoogleApiLoaderService_Factory(t) { return new (t || GoogleApiLoaderService)(i0.ɵɵinject(NG_GAPI_CONFIG)); };
-/** @nocollapse */ GoogleApiLoaderService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleApiLoaderService, factory: GoogleApiLoaderService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleApiLoaderService, [{
-        type: Injectable
-    }], function () { return [{ type: undefined, decorators: [{
-                type: Inject,
-                args: [NG_GAPI_CONFIG]
-            }] }]; }, null); })();
+GoogleApiLoaderService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+GoogleApiLoaderService.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: [NG_GAPI_CONFIG,] }] }
+];
 
 /// <reference types="gapi.auth2" />
 class GoogleAuth2LoaderService {
@@ -95,12 +93,15 @@ class GoogleAuth2LoaderService {
         });
     }
 }
-/** @nocollapse */ GoogleAuth2LoaderService.ɵfac = function GoogleAuth2LoaderService_Factory(t) { return new (t || GoogleAuth2LoaderService)(i0.ɵɵinject(GoogleApiLoaderService)); };
-/** @nocollapse */ GoogleAuth2LoaderService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleAuth2LoaderService, factory: GoogleAuth2LoaderService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleAuth2LoaderService, [{
-        type: Injectable
-    }], function () { return [{ type: GoogleApiLoaderService }]; }, null); })();
+GoogleAuth2LoaderService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+GoogleAuth2LoaderService.ctorParameters = () => [
+    { type: GoogleApiLoaderService }
+];
 
+/// <reference types="gapi.auth2" />
 class GoogleAuthService {
     constructor(googleAuth2LoaderService, googleApiLoaderService, ngZone) {
         this.googleAuth2LoaderService = googleAuth2LoaderService;
@@ -211,11 +212,15 @@ class GoogleAuthService {
         return newDate;
     }
 }
-/** @nocollapse */ GoogleAuthService.ɵfac = function GoogleAuthService_Factory(t) { return new (t || GoogleAuthService)(i0.ɵɵinject(GoogleAuth2LoaderService), i0.ɵɵinject(GoogleApiLoaderService), i0.ɵɵinject(i0.NgZone)); };
-/** @nocollapse */ GoogleAuthService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleAuthService, factory: GoogleAuthService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleAuthService, [{
-        type: Injectable
-    }], function () { return [{ type: GoogleAuth2LoaderService }, { type: GoogleApiLoaderService }, { type: i0.NgZone }]; }, null); })();
+GoogleAuthService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+GoogleAuthService.ctorParameters = () => [
+    { type: GoogleAuth2LoaderService },
+    { type: GoogleApiLoaderService },
+    { type: NgZone }
+];
 
 class GoogleOauthModule {
     static forRoot(gapiConfigProvider) {
@@ -230,16 +235,11 @@ class GoogleOauthModule {
         };
     }
 }
-/** @nocollapse */ GoogleOauthModule.ɵfac = function GoogleOauthModule_Factory(t) { return new (t || GoogleOauthModule)(); };
-/** @nocollapse */ GoogleOauthModule.ɵmod = i0.ɵɵdefineNgModule({ type: GoogleOauthModule });
-/** @nocollapse */ GoogleOauthModule.ɵinj = i0.ɵɵdefineInjector({ imports: [[CommonModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(GoogleOauthModule, { imports: [CommonModule] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleOauthModule, [{
-        type: NgModule,
-        args: [{
+GoogleOauthModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule]
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
  * Generated bundle index. Do not edit.

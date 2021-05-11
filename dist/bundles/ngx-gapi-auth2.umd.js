@@ -2,29 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('ngx-gapi-auth2', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['ngx-gapi-auth2'] = {}, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, i0, rxjs, operators, common) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+}(this, (function (exports, core, rxjs, operators, common) { 'use strict';
 
     var GoogleApiConfig = /** @class */ (function () {
         function GoogleApiConfig(config) {
@@ -53,7 +31,7 @@
         return AuthData;
     }());
 
-    var NG_GAPI_CONFIG = new i0.InjectionToken('ng-gapi.config');
+    var NG_GAPI_CONFIG = new core.InjectionToken('ng-gapi.config');
     var GoogleApiLoaderService = /** @class */ (function () {
         function GoogleApiLoaderService(config) {
             this.gapiUrl = 'https://apis.google.com/js/platform.js';
@@ -84,18 +62,13 @@
         };
         return GoogleApiLoaderService;
     }());
-    /** @nocollapse */ GoogleApiLoaderService.ɵfac = function GoogleApiLoaderService_Factory(t) { return new (t || GoogleApiLoaderService)(i0__namespace.ɵɵinject(NG_GAPI_CONFIG)); };
-    /** @nocollapse */ GoogleApiLoaderService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleApiLoaderService, factory: GoogleApiLoaderService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleApiLoaderService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [NG_GAPI_CONFIG]
-                        }] }];
-        }, null);
-    })();
+    GoogleApiLoaderService.decorators = [
+        { type: core.Injectable }
+    ];
+    /** @nocollapse */
+    GoogleApiLoaderService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: core.Inject, args: [NG_GAPI_CONFIG,] }] }
+    ]; };
 
     /// <reference types="gapi.auth2" />
     var GoogleAuth2LoaderService = /** @class */ (function () {
@@ -130,14 +103,15 @@
         };
         return GoogleAuth2LoaderService;
     }());
-    /** @nocollapse */ GoogleAuth2LoaderService.ɵfac = function GoogleAuth2LoaderService_Factory(t) { return new (t || GoogleAuth2LoaderService)(i0__namespace.ɵɵinject(GoogleApiLoaderService)); };
-    /** @nocollapse */ GoogleAuth2LoaderService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleAuth2LoaderService, factory: GoogleAuth2LoaderService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleAuth2LoaderService, [{
-                type: i0.Injectable
-            }], function () { return [{ type: GoogleApiLoaderService }]; }, null);
-    })();
+    GoogleAuth2LoaderService.decorators = [
+        { type: core.Injectable }
+    ];
+    /** @nocollapse */
+    GoogleAuth2LoaderService.ctorParameters = function () { return [
+        { type: GoogleApiLoaderService }
+    ]; };
 
+    /// <reference types="gapi.auth2" />
     var GoogleAuthService = /** @class */ (function () {
         function GoogleAuthService(googleAuth2LoaderService, googleApiLoaderService, ngZone) {
             var _this = this;
@@ -261,13 +235,15 @@
         };
         return GoogleAuthService;
     }());
-    /** @nocollapse */ GoogleAuthService.ɵfac = function GoogleAuthService_Factory(t) { return new (t || GoogleAuthService)(i0__namespace.ɵɵinject(GoogleAuth2LoaderService), i0__namespace.ɵɵinject(GoogleApiLoaderService), i0__namespace.ɵɵinject(i0__namespace.NgZone)); };
-    /** @nocollapse */ GoogleAuthService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleAuthService, factory: GoogleAuthService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleAuthService, [{
-                type: i0.Injectable
-            }], function () { return [{ type: GoogleAuth2LoaderService }, { type: GoogleApiLoaderService }, { type: i0__namespace.NgZone }]; }, null);
-    })();
+    GoogleAuthService.decorators = [
+        { type: core.Injectable }
+    ];
+    /** @nocollapse */
+    GoogleAuthService.ctorParameters = function () { return [
+        { type: GoogleAuth2LoaderService },
+        { type: GoogleApiLoaderService },
+        { type: core.NgZone }
+    ]; };
 
     var GoogleOauthModule = /** @class */ (function () {
         function GoogleOauthModule() {
@@ -285,18 +261,11 @@
         };
         return GoogleOauthModule;
     }());
-    /** @nocollapse */ GoogleOauthModule.ɵfac = function GoogleOauthModule_Factory(t) { return new (t || GoogleOauthModule)(); };
-    /** @nocollapse */ GoogleOauthModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: GoogleOauthModule });
-    /** @nocollapse */ GoogleOauthModule.ɵinj = i0__namespace.ɵɵdefineInjector({ imports: [[common.CommonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0__namespace.ɵɵsetNgModuleScope(GoogleOauthModule, { imports: [common.CommonModule] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleOauthModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule]
-                    }]
-            }], null, null);
-    })();
+    GoogleOauthModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule]
+                },] }
+    ];
 
     /**
      * Generated bundle index. Do not edit.

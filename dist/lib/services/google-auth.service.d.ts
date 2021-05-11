@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { GoogleAuth2LoaderService } from './google-auth2-loader.service';
 import { GoogleApiLoaderService } from './google-api-loader.service';
 import { AuthData, SignInError } from '../models/auth';
-import * as i0 from "@angular/core";
 export declare class GoogleAuthService {
     private googleAuth2LoaderService;
     private googleApiLoaderService;
@@ -23,6 +22,4 @@ export declare class GoogleAuthService {
     private removeState;
     private getProfile;
     private setTime;
-    static ɵfac: i0.ɵɵFactoryDef<GoogleAuthService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<GoogleAuthService>;
 }
