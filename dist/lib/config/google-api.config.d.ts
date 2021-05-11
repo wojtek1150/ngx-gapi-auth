@@ -27,11 +27,6 @@ export interface NgGapiClientConfig {
      */
     hosted_domain?: string;
     /**
-     * Used only for OpenID 2.0 client migration. Set to the value of the realm that you are currently using for OpenID 2.0,
-     * as described in <a href="https://developers.google.com/accounts/docs/OpenID#openid-connect">OpenID 2.0 (Migration)</a>.
-     */
-    openid_realm?: string;
-    /**
      * The UX mode to use for the sign-in flow.
      * By default, it will open the consent flow in a popup.
      */
@@ -41,10 +36,6 @@ export interface NgGapiClientConfig {
      * The default redirect_uri is the current URL stripped of query parameters and hash fragment.
      */
     redirect_uri?: string;
-    /**
-     * Describes the surface for a particular version of an API.
-     */
-    discoveryDocs: string[];
 }
 export declare class GoogleApiConfig {
     protected clientConfig: NgGapiClientConfig;

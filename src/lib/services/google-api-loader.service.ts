@@ -7,7 +7,7 @@ export let NG_GAPI_CONFIG: InjectionToken<NgGapiClientConfig> =
 
 @Injectable()
 export class GoogleApiLoaderService {
-  private readonly gapiUrl: string = 'https://apis.google.com/js/api.js';
+  private readonly gapiUrl: string = 'https://apis.google.com/js/platform.js';
   private readonly config: GoogleApiConfig;
 
   constructor(@Inject(NG_GAPI_CONFIG) config: NgGapiClientConfig) {
@@ -26,7 +26,6 @@ export class GoogleApiLoaderService {
   public isMocked(): boolean {
     return this.config.getMocked();
   }
-
 
   private loadGapi(): Observable<boolean> {
     return new Observable((observer: Observer<boolean>) => {

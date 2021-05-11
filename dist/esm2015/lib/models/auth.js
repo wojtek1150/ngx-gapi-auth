@@ -1,18 +1,4 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/models/auth.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export class AuthUser {
-    /**
-     * @param {?} id
-     * @param {?} firstName
-     * @param {?} lastName
-     * @param {?} email
-     * @param {?} avatar
-     * @param {?} idToken
-     * @param {?} tokenExpiresAt
-     */
+export class AuthData {
     constructor(id, firstName, lastName, email, avatar, idToken, tokenExpiresAt) {
         this.id = id;
         this.firstName = firstName;
@@ -23,20 +9,4 @@ export class AuthUser {
         this.tokenExpiresAt = tokenExpiresAt;
     }
 }
-if (false) {
-    /** @type {?} */
-    AuthUser.prototype.id;
-    /** @type {?} */
-    AuthUser.prototype.firstName;
-    /** @type {?} */
-    AuthUser.prototype.lastName;
-    /** @type {?} */
-    AuthUser.prototype.email;
-    /** @type {?} */
-    AuthUser.prototype.avatar;
-    /** @type {?} */
-    AuthUser.prototype.idToken;
-    /** @type {?} */
-    AuthUser.prototype.tokenExpiresAt;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25neC1nYXBpLWF1dGgyLyIsInNvdXJjZXMiOlsibGliL21vZGVscy9hdXRoLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsTUFBTSxPQUFPLFFBQVE7Ozs7Ozs7Ozs7SUFDbkIsWUFDUyxFQUFVLEVBQ1YsU0FBaUIsRUFDakIsUUFBZ0IsRUFDaEIsS0FBYSxFQUNiLE1BQWMsRUFDZCxPQUFlLEVBQ2YsY0FBc0I7UUFOdEIsT0FBRSxHQUFGLEVBQUUsQ0FBUTtRQUNWLGNBQVMsR0FBVCxTQUFTLENBQVE7UUFDakIsYUFBUSxHQUFSLFFBQVEsQ0FBUTtRQUNoQixVQUFLLEdBQUwsS0FBSyxDQUFRO1FBQ2IsV0FBTSxHQUFOLE1BQU0sQ0FBUTtRQUNkLFlBQU8sR0FBUCxPQUFPLENBQVE7UUFDZixtQkFBYyxHQUFkLGNBQWMsQ0FBUTtJQUMzQixDQUFDO0NBQ047OztJQVJHLHNCQUFpQjs7SUFDakIsNkJBQXdCOztJQUN4Qiw0QkFBdUI7O0lBQ3ZCLHlCQUFvQjs7SUFDcEIsMEJBQXFCOztJQUNyQiwyQkFBc0I7O0lBQ3RCLGtDQUE2QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBBdXRoVXNlciB7XG4gIGNvbnN0cnVjdG9yKFxuICAgIHB1YmxpYyBpZDogc3RyaW5nLFxuICAgIHB1YmxpYyBmaXJzdE5hbWU6IHN0cmluZyxcbiAgICBwdWJsaWMgbGFzdE5hbWU6IHN0cmluZyxcbiAgICBwdWJsaWMgZW1haWw6IHN0cmluZyxcbiAgICBwdWJsaWMgYXZhdGFyOiBzdHJpbmcsXG4gICAgcHVibGljIGlkVG9rZW46IHN0cmluZyxcbiAgICBwdWJsaWMgdG9rZW5FeHBpcmVzQXQ6IG51bWJlclxuICApIHsgfVxufVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9saWIvbW9kZWxzL2F1dGgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxPQUFPLFFBQVE7SUFDbkIsWUFDUyxFQUFVLEVBQ1YsU0FBaUIsRUFDakIsUUFBZ0IsRUFDaEIsS0FBYSxFQUNiLE1BQWMsRUFDZCxPQUFlLEVBQ2YsY0FBc0I7UUFOdEIsT0FBRSxHQUFGLEVBQUUsQ0FBUTtRQUNWLGNBQVMsR0FBVCxTQUFTLENBQVE7UUFDakIsYUFBUSxHQUFSLFFBQVEsQ0FBUTtRQUNoQixVQUFLLEdBQUwsS0FBSyxDQUFRO1FBQ2IsV0FBTSxHQUFOLE1BQU0sQ0FBUTtRQUNkLFlBQU8sR0FBUCxPQUFPLENBQVE7UUFDZixtQkFBYyxHQUFkLGNBQWMsQ0FBUTtJQUMzQixDQUFDO0NBQ04iLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQXV0aERhdGEge1xuICBjb25zdHJ1Y3RvcihcbiAgICBwdWJsaWMgaWQ6IHN0cmluZyxcbiAgICBwdWJsaWMgZmlyc3ROYW1lOiBzdHJpbmcsXG4gICAgcHVibGljIGxhc3ROYW1lOiBzdHJpbmcsXG4gICAgcHVibGljIGVtYWlsOiBzdHJpbmcsXG4gICAgcHVibGljIGF2YXRhcjogc3RyaW5nLFxuICAgIHB1YmxpYyBpZFRva2VuOiBzdHJpbmcsXG4gICAgcHVibGljIHRva2VuRXhwaXJlc0F0OiBudW1iZXJcbiAgKSB7IH1cbn1cblxuZXhwb3J0IGludGVyZmFjZSBTaWduSW5FcnJvciB7XG4gIHR5cGU6ICdjb29raWVzTm90RW5hYmxlZCcgfCBzdHJpbmc7XG59XG5cbmV4cG9ydCBpbnRlcmZhY2UgVG9rZW5FcnJvciB7XG4gIGlkcElkOiAnZ29vZ2xlJyB8IHN0cmluZztcbiAgdHlwZTogJ3Rva2VuRmFpbGVkJyB8ICd1c2VyTG9nZ2VkT3V0JyB8ICdub1Nlc3Npb25Cb3VuZCcgfCBzdHJpbmc7XG4gIGVycm9yPzogc3RyaW5nO1xufVxuIl19

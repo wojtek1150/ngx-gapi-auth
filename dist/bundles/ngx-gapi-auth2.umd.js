@@ -1,121 +1,47 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('ngx-gapi-auth2', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory(global['ngx-gapi-auth2'] = {}, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, rxjs, operators, common) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global['ngx-gapi-auth2'] = {}, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, i0, rxjs, operators, common) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/config/google-api.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function NgGapiClientConfig() { }
-    if (false) {
-        /**
-         * User for mocking auth flow to local storage save
-         * @type {?}
-         */
-        NgGapiClientConfig.prototype.e2e;
-        /**
-         * The app's client ID, found and created in the Google Developers Console.
-         * @type {?}
-         */
-        NgGapiClientConfig.prototype.client_id;
-        /**
-         * The domains for which to create sign-in cookies. Either a URI, single_host_origin, or none.
-         * Defaults to single_host_origin if unspecified.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.cookie_policy;
-        /**
-         * The scopes to request, as a space-delimited string. Optional if fetch_basic_profile is not set to false.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.scope;
-        /**
-         * Fetch users' basic profile information when they sign in. Adds 'profile' and 'email' to the requested scopes. True if unspecified.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.fetch_basic_profile;
-        /**
-         * The Google Apps domain to which users must belong to sign in. This is susceptible to modification by clients,
-         * so be sure to verify the hosted domain property of the returned user. Use GoogleUser.getHostedDomain() on the client,
-         * and the hd claim in the ID Token on the server to verify the domain is what you expected.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.hosted_domain;
-        /**
-         * Used only for OpenID 2.0 client migration. Set to the value of the realm that you are currently using for OpenID 2.0,
-         * as described in <a href="https://developers.google.com/accounts/docs/OpenID#openid-connect">OpenID 2.0 (Migration)</a>.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.openid_realm;
-        /**
-         * The UX mode to use for the sign-in flow.
-         * By default, it will open the consent flow in a popup.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.ux_mode;
-        /**
-         * If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow.
-         * The default redirect_uri is the current URL stripped of query parameters and hash fragment.
-         * @type {?|undefined}
-         */
-        NgGapiClientConfig.prototype.redirect_uri;
-        /**
-         * Describes the surface for a particular version of an API.
-         * @type {?}
-         */
-        NgGapiClientConfig.prototype.discoveryDocs;
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
     }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     var GoogleApiConfig = /** @class */ (function () {
         function GoogleApiConfig(config) {
             this.clientConfig = config;
             this.mocked = config.e2e;
         }
-        /**
-         * @return {?}
-         */
-        GoogleApiConfig.prototype.getMocked = /**
-         * @return {?}
-         */
-        function () {
+        GoogleApiConfig.prototype.getMocked = function () {
             return this.mocked;
         };
-        /**
-         * @return {?}
-         */
-        GoogleApiConfig.prototype.getClientConfig = /**
-         * @return {?}
-         */
-        function () {
+        GoogleApiConfig.prototype.getClientConfig = function () {
             return this.clientConfig;
         };
         return GoogleApiConfig;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @protected
-         */
-        GoogleApiConfig.prototype.clientConfig;
-        /**
-         * @type {?}
-         * @protected
-         */
-        GoogleApiConfig.prototype.mocked;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/models/auth.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var AuthUser = /** @class */ (function () {
-        function AuthUser(id, firstName, lastName, email, avatar, idToken, tokenExpiresAt) {
+    var AuthData = /** @class */ (function () {
+        function AuthData(id, firstName, lastName, email, avatar, idToken, tokenExpiresAt) {
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
@@ -124,216 +50,94 @@
             this.idToken = idToken;
             this.tokenExpiresAt = tokenExpiresAt;
         }
-        return AuthUser;
+        return AuthData;
     }());
-    if (false) {
-        /** @type {?} */
-        AuthUser.prototype.id;
-        /** @type {?} */
-        AuthUser.prototype.firstName;
-        /** @type {?} */
-        AuthUser.prototype.lastName;
-        /** @type {?} */
-        AuthUser.prototype.email;
-        /** @type {?} */
-        AuthUser.prototype.avatar;
-        /** @type {?} */
-        AuthUser.prototype.idToken;
-        /** @type {?} */
-        AuthUser.prototype.tokenExpiresAt;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/services/google-api-loader.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var NG_GAPI_CONFIG = new core.InjectionToken('ng-gapi.config');
+    var NG_GAPI_CONFIG = new i0.InjectionToken('ng-gapi.config');
     var GoogleApiLoaderService = /** @class */ (function () {
         function GoogleApiLoaderService(config) {
-            this.gapiUrl = 'https://apis.google.com/js/api.js';
+            this.gapiUrl = 'https://apis.google.com/js/platform.js';
             this.config = new GoogleApiConfig(config);
             this.loadGapi().subscribe();
         }
-        /**
-         * @return {?}
-         */
-        GoogleApiLoaderService.prototype.onLoad = /**
-         * @return {?}
-         */
-        function () {
+        GoogleApiLoaderService.prototype.onLoad = function () {
             return this.loadGapi();
         };
-        /**
-         * @return {?}
-         */
-        GoogleApiLoaderService.prototype.getConfig = /**
-         * @return {?}
-         */
-        function () {
+        GoogleApiLoaderService.prototype.getConfig = function () {
             return this.config;
         };
-        /**
-         * @return {?}
-         */
-        GoogleApiLoaderService.prototype.isMocked = /**
-         * @return {?}
-         */
-        function () {
+        GoogleApiLoaderService.prototype.isMocked = function () {
             return this.config.getMocked();
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        GoogleApiLoaderService.prototype.loadGapi = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        GoogleApiLoaderService.prototype.loadGapi = function () {
             var _this = this;
-            return new rxjs.Observable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+            return new rxjs.Observable(function (observer) {
                 var node = document.createElement('script');
                 node.src = _this.gapiUrl;
                 node.type = 'text/javascript';
-                node.charset = 'utf-8';
                 document.getElementsByTagName('head')[0].appendChild(node);
-                node.onload = (/**
-                 * @return {?}
-                 */
-                function () {
+                node.onload = function () {
                     observer.next(true);
                     observer.complete();
-                });
-            }));
+                };
+            });
         };
-        GoogleApiLoaderService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        GoogleApiLoaderService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [NG_GAPI_CONFIG,] }] }
-        ]; };
         return GoogleApiLoaderService;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleApiLoaderService.prototype.gapiUrl;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleApiLoaderService.prototype.config;
-    }
+    /** @nocollapse */ GoogleApiLoaderService.ɵfac = function GoogleApiLoaderService_Factory(t) { return new (t || GoogleApiLoaderService)(i0__namespace.ɵɵinject(NG_GAPI_CONFIG)); };
+    /** @nocollapse */ GoogleApiLoaderService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleApiLoaderService, factory: GoogleApiLoaderService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleApiLoaderService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [NG_GAPI_CONFIG]
+                        }] }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/services/google-auth2-loader.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
+    /// <reference types="gapi.auth2" />
     var GoogleAuth2LoaderService = /** @class */ (function () {
         function GoogleAuth2LoaderService(googleApi) {
             var _this = this;
             this.googleApi = googleApi;
             this.GoogleAuth = undefined;
-            this.googleApi.onLoad().subscribe((/**
-             * @return {?}
-             */
-            function () {
+            this.googleApi.onLoad().subscribe(function () {
                 _this.loadGoogleAuth2().subscribe();
-            }));
+            });
         }
-        /**
-         * @param {?=} newInstance
-         * @return {?}
-         */
-        GoogleAuth2LoaderService.prototype.getAuth = /**
-         * @param {?=} newInstance
-         * @return {?}
-         */
-        function (newInstance) {
+        GoogleAuth2LoaderService.prototype.getAuth = function (newInstance) {
             var _this = this;
             if (newInstance === void 0) { newInstance = false; }
             if (!this.GoogleAuth || newInstance) {
                 return this.googleApi.onLoad()
-                    .pipe(operators.mergeMap((/**
-                 * @return {?}
-                 */
-                function () { return _this.loadGoogleAuth2(); })));
+                    .pipe(operators.mergeMap(function () { return _this.loadGoogleAuth2(); }));
             }
             return rxjs.of(this.GoogleAuth);
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        GoogleAuth2LoaderService.prototype.loadGoogleAuth2 = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        GoogleAuth2LoaderService.prototype.loadGoogleAuth2 = function () {
             var _this = this;
-            return new rxjs.Observable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                gapi.load('auth2', (/**
-                 * @return {?}
-                 */
-                function () {
-                    gapi.auth2.init(_this.googleApi.getConfig().getClientConfig()).then((/**
-                     * @param {?} auth
-                     * @return {?}
-                     */
-                    function (auth) {
+            return new rxjs.Observable(function (observer) {
+                gapi.load('auth2', function () {
+                    gapi.auth2.init(_this.googleApi.getConfig().getClientConfig()).then(function (auth) {
                         _this.GoogleAuth = auth;
                         observer.next(auth);
                         observer.complete();
-                    })).catch((/**
-                     * @param {?} err
-                     * @return {?}
-                     */
-                    function (err) { return observer.error(err); }));
-                }));
-            }));
+                    }).catch(function (err) { return observer.error(err); });
+                });
+            });
         };
-        GoogleAuth2LoaderService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        GoogleAuth2LoaderService.ctorParameters = function () { return [
-            { type: GoogleApiLoaderService }
-        ]; };
         return GoogleAuth2LoaderService;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuth2LoaderService.prototype.GoogleAuth;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuth2LoaderService.prototype.googleApi;
-    }
+    /** @nocollapse */ GoogleAuth2LoaderService.ɵfac = function GoogleAuth2LoaderService_Factory(t) { return new (t || GoogleAuth2LoaderService)(i0__namespace.ɵɵinject(GoogleApiLoaderService)); };
+    /** @nocollapse */ GoogleAuth2LoaderService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleAuth2LoaderService, factory: GoogleAuth2LoaderService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleAuth2LoaderService, [{
+                type: i0.Injectable
+            }], function () { return [{ type: GoogleApiLoaderService }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/services/google-auth.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var GoogleAuthService = /** @class */ (function () {
         function GoogleAuthService(googleAuth2LoaderService, googleApiLoaderService, ngZone) {
             var _this = this;
@@ -341,108 +145,93 @@
             this.googleApiLoaderService = googleApiLoaderService;
             this.ngZone = ngZone;
             this._authState = new rxjs.ReplaySubject(1);
+            this._loginState = new rxjs.ReplaySubject(1);
+            this.SIGN_IN_EXPIRE_KEY = 'loginExpirationDate';
             if (this.googleApiLoaderService.isMocked()) {
                 this.signIn();
             }
             else {
-                this.googleApiLoaderService.onLoad().subscribe((/**
-                 * @return {?}
-                 */
-                function () {
-                    _this.googleAuth2LoaderService.getAuth().subscribe((/**
-                     * @param {?} auth
-                     * @return {?}
-                     */
-                    function (auth) {
-                        _this.auth = auth;
-                        if (_this.auth.currentUser.get().isSignedIn()) {
-                            _this.refreshToken();
-                        }
-                        else {
-                            _this._authState.next(null);
-                        }
-                    }));
+                this.googleApiLoaderService.onLoad().subscribe(function () {
+                    _this.googleAuth2LoaderService.getAuth().subscribe(function (auth) { return _this.authLoaded(auth); }, function () { return _this.removeState(); });
                     rxjs.interval(20 * 60 * 1000).pipe(// run every 20min
-                    operators.tap((/**
-                     * @return {?}
-                     */
-                    function () { return _this.refreshToken(); }))).subscribe();
-                }));
+                    operators.tap(function () { return _this.refreshToken(); })).subscribe();
+                });
             }
         }
         Object.defineProperty(GoogleAuthService.prototype, "authState", {
-            get: /**
-             * @return {?}
-             */
-            function () {
+            get: function () {
                 return this._authState.asObservable();
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
-        GoogleAuthService.prototype.signIn = /**
-         * @return {?}
-         */
-        function () {
+        Object.defineProperty(GoogleAuthService.prototype, "loginState", {
+            get: function () {
+                return this._loginState.asObservable();
+            },
+            enumerable: false,
+            configurable: true
+        });
+        GoogleAuthService.prototype.signIn = function () {
+            var _this = this;
             if (this.googleApiLoaderService.isMocked()) {
+                this._loginState.next(JSON.parse(localStorage.getItem('user')));
                 this._authState.next(JSON.parse(localStorage.getItem('user')));
             }
             else {
+                var now = new Date();
+                var expirationDate = this.setTime(now, null, now.getMinutes() + 5);
+                localStorage.setItem(this.SIGN_IN_EXPIRE_KEY, expirationDate.toISOString());
+                var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
                 this.auth.signIn({
                     prompt: 'select_account',
-                    ux_mode: 'redirect',
-                    redirect_uri: window.location.origin
-                });
+                    ux_mode: isSafari ? 'popup' : 'redirect',
+                }).then(function () { return _this.fetchLoginData(); });
             }
         };
-        /**
-         * @return {?}
-         */
-        GoogleAuthService.prototype.signOut = /**
-         * @return {?}
-         */
-        function () {
+        GoogleAuthService.prototype.signOut = function () {
             if (!this.googleApiLoaderService.isMocked()) {
                 this.auth.signOut();
             }
-            this._authState.next(null);
+            this.removeState();
         };
-        /**
-         * @return {?}
-         */
-        GoogleAuthService.prototype.refreshToken = /**
-         * @return {?}
-         */
-        function () {
+        GoogleAuthService.prototype.fetchLoginData = function () {
             var _this = this;
-            return this.auth.currentUser.get().reloadAuthResponse().then((/**
-             * @param {?} r
-             * @return {?}
-             */
-            function (r) {
-                _this.ngZone.run((/**
-                 * @return {?}
-                 */
-                function () { return _this._authState.next(_this.getProfile(r.id_token, r.expires_at)); }));
-            }));
+            return this.auth.currentUser.get().reloadAuthResponse().then(function (r) {
+                _this.ngZone.run(function () {
+                    _this._loginState.next(_this.getProfile(r.id_token, r.expires_at));
+                    _this._authState.next(_this.getProfile(r.id_token, r.expires_at));
+                });
+            });
         };
-        /**
-         * @private
-         * @param {?} token
-         * @param {?} expiresAt
-         * @return {?}
-         */
-        GoogleAuthService.prototype.getProfile = /**
-         * @private
-         * @param {?} token
-         * @param {?} expiresAt
-         * @return {?}
-         */
-        function (token, expiresAt) {
-            /** @type {?} */
+        GoogleAuthService.prototype.refreshToken = function () {
+            var _this = this;
+            return this.auth.currentUser.get().reloadAuthResponse().then(function (r) {
+                _this.ngZone.run(function () { return _this._authState.next(_this.getProfile(r.id_token, r.expires_at)); });
+            });
+        };
+        GoogleAuthService.prototype.authLoaded = function (auth) {
+            this.auth = auth;
+            if (this.auth.currentUser.get().isSignedIn()) {
+                this.fetchLoginData();
+                localStorage.removeItem(this.SIGN_IN_EXPIRE_KEY);
+            }
+            else {
+                var signInDateExpireDate = new Date(localStorage.getItem(this.SIGN_IN_EXPIRE_KEY));
+                if (signInDateExpireDate > new Date()) {
+                    this._loginState.next({ type: 'cookiesNotEnabled' });
+                    this._authState.next(null);
+                }
+                else {
+                    this.removeState();
+                }
+            }
+        };
+        GoogleAuthService.prototype.removeState = function () {
+            this._authState.next(null);
+            this._loginState.next(null);
+        };
+        GoogleAuthService.prototype.getProfile = function (token, expiresAt) {
             var p = this.auth.currentUser.get().getBasicProfile();
             return p ? {
                 id: p.getId(),
@@ -451,65 +240,39 @@
                 lastName: p.getFamilyName(),
                 avatar: p.getImageUrl(),
                 idToken: token,
-                tokenExpiresAt: expiresAt
+                tokenExpiresAt: expiresAt,
             } : null;
         };
-        GoogleAuthService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        GoogleAuthService.ctorParameters = function () { return [
-            { type: GoogleAuth2LoaderService },
-            { type: GoogleApiLoaderService },
-            { type: core.NgZone }
-        ]; };
+        GoogleAuthService.prototype.setTime = function (date, hours, minutes, seconds, milliseconds) {
+            var newDate = new Date(date);
+            if (typeof hours === 'number') {
+                newDate.setHours(hours);
+            }
+            if (typeof minutes === 'number') {
+                newDate.setMinutes(minutes);
+            }
+            if (typeof seconds === 'number') {
+                newDate.setSeconds(seconds);
+            }
+            if (typeof milliseconds === 'number') {
+                newDate.setMilliseconds(milliseconds);
+            }
+            return newDate;
+        };
         return GoogleAuthService;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuthService.prototype._authState;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuthService.prototype.auth;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuthService.prototype.googleAuth2LoaderService;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuthService.prototype.googleApiLoaderService;
-        /**
-         * @type {?}
-         * @private
-         */
-        GoogleAuthService.prototype.ngZone;
-    }
+    /** @nocollapse */ GoogleAuthService.ɵfac = function GoogleAuthService_Factory(t) { return new (t || GoogleAuthService)(i0__namespace.ɵɵinject(GoogleAuth2LoaderService), i0__namespace.ɵɵinject(GoogleApiLoaderService), i0__namespace.ɵɵinject(i0__namespace.NgZone)); };
+    /** @nocollapse */ GoogleAuthService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: GoogleAuthService, factory: GoogleAuthService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleAuthService, [{
+                type: i0.Injectable
+            }], function () { return [{ type: GoogleAuth2LoaderService }, { type: GoogleApiLoaderService }, { type: i0__namespace.NgZone }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lib/common-util-google-oauth.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var GoogleOauthModule = /** @class */ (function () {
         function GoogleOauthModule() {
         }
-        /**
-         * @param {?} gapiConfigProvider
-         * @return {?}
-         */
-        GoogleOauthModule.forRoot = /**
-         * @param {?} gapiConfigProvider
-         * @return {?}
-         */
-        function (gapiConfigProvider) {
+        GoogleOauthModule.forRoot = function (gapiConfigProvider) {
             return {
                 ngModule: GoogleOauthModule,
                 providers: [
@@ -520,15 +283,26 @@
                 ]
             };
         };
-        GoogleOauthModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule]
-                    },] }
-        ];
         return GoogleOauthModule;
     }());
+    /** @nocollapse */ GoogleOauthModule.ɵfac = function GoogleOauthModule_Factory(t) { return new (t || GoogleOauthModule)(); };
+    /** @nocollapse */ GoogleOauthModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: GoogleOauthModule });
+    /** @nocollapse */ GoogleOauthModule.ɵinj = i0__namespace.ɵɵdefineInjector({ imports: [[common.CommonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0__namespace.ɵɵsetNgModuleScope(GoogleOauthModule, { imports: [common.CommonModule] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(GoogleOauthModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule]
+                    }]
+            }], null, null);
+    })();
 
-    exports.AuthUser = AuthUser;
+    /**
+     * Generated bundle index. Do not edit.
+     */
+
+    exports.AuthData = AuthData;
     exports.GoogleApiConfig = GoogleApiConfig;
     exports.GoogleApiLoaderService = GoogleApiLoaderService;
     exports.GoogleAuth2LoaderService = GoogleAuth2LoaderService;
