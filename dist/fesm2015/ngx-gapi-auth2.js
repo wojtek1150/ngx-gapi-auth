@@ -1,124 +1,23 @@
-import { InjectionToken, Injectable, Inject, NgZone, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
 import { Observable, of, ReplaySubject, interval } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/config/google-api.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function NgGapiClientConfig() { }
-if (false) {
-    /**
-     * User for mocking auth flow to local storage save
-     * @type {?}
-     */
-    NgGapiClientConfig.prototype.e2e;
-    /**
-     * The app's client ID, found and created in the Google Developers Console.
-     * @type {?}
-     */
-    NgGapiClientConfig.prototype.client_id;
-    /**
-     * The domains for which to create sign-in cookies. Either a URI, single_host_origin, or none.
-     * Defaults to single_host_origin if unspecified.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.cookie_policy;
-    /**
-     * The scopes to request, as a space-delimited string. Optional if fetch_basic_profile is not set to false.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.scope;
-    /**
-     * Fetch users' basic profile information when they sign in. Adds 'profile' and 'email' to the requested scopes. True if unspecified.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.fetch_basic_profile;
-    /**
-     * The Google Apps domain to which users must belong to sign in. This is susceptible to modification by clients,
-     * so be sure to verify the hosted domain property of the returned user. Use GoogleUser.getHostedDomain() on the client,
-     * and the hd claim in the ID Token on the server to verify the domain is what you expected.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.hosted_domain;
-    /**
-     * Used only for OpenID 2.0 client migration. Set to the value of the realm that you are currently using for OpenID 2.0,
-     * as described in <a href="https://developers.google.com/accounts/docs/OpenID#openid-connect">OpenID 2.0 (Migration)</a>.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.openid_realm;
-    /**
-     * The UX mode to use for the sign-in flow.
-     * By default, it will open the consent flow in a popup.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.ux_mode;
-    /**
-     * If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow.
-     * The default redirect_uri is the current URL stripped of query parameters and hash fragment.
-     * @type {?|undefined}
-     */
-    NgGapiClientConfig.prototype.redirect_uri;
-    /**
-     * Describes the surface for a particular version of an API.
-     * @type {?}
-     */
-    NgGapiClientConfig.prototype.discoveryDocs;
-}
 class GoogleApiConfig {
-    /**
-     * @param {?} config
-     */
     constructor(config) {
         this.clientConfig = config;
         this.mocked = config.e2e;
     }
-    /**
-     * @return {?}
-     */
     getMocked() {
         return this.mocked;
     }
-    /**
-     * @return {?}
-     */
     getClientConfig() {
         return this.clientConfig;
     }
 }
-if (false) {
-    /**
-     * @type {?}
-     * @protected
-     */
-    GoogleApiConfig.prototype.clientConfig;
-    /**
-     * @type {?}
-     * @protected
-     */
-    GoogleApiConfig.prototype.mocked;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/models/auth.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class AuthUser {
-    /**
-     * @param {?} id
-     * @param {?} firstName
-     * @param {?} lastName
-     * @param {?} email
-     * @param {?} avatar
-     * @param {?} idToken
-     * @param {?} tokenExpiresAt
-     */
+class AuthData {
     constructor(id, firstName, lastName, email, avatar, idToken, tokenExpiresAt) {
         this.id = id;
         this.firstName = firstName;
@@ -129,285 +28,161 @@ class AuthUser {
         this.tokenExpiresAt = tokenExpiresAt;
     }
 }
-if (false) {
-    /** @type {?} */
-    AuthUser.prototype.id;
-    /** @type {?} */
-    AuthUser.prototype.firstName;
-    /** @type {?} */
-    AuthUser.prototype.lastName;
-    /** @type {?} */
-    AuthUser.prototype.email;
-    /** @type {?} */
-    AuthUser.prototype.avatar;
-    /** @type {?} */
-    AuthUser.prototype.idToken;
-    /** @type {?} */
-    AuthUser.prototype.tokenExpiresAt;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/services/google-api-loader.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 let NG_GAPI_CONFIG = new InjectionToken('ng-gapi.config');
 class GoogleApiLoaderService {
-    /**
-     * @param {?} config
-     */
     constructor(config) {
-        this.gapiUrl = 'https://apis.google.com/js/api.js';
+        this.gapiUrl = 'https://apis.google.com/js/platform.js';
         this.config = new GoogleApiConfig(config);
         this.loadGapi().subscribe();
     }
-    /**
-     * @return {?}
-     */
     onLoad() {
         return this.loadGapi();
     }
-    /**
-     * @return {?}
-     */
     getConfig() {
         return this.config;
     }
-    /**
-     * @return {?}
-     */
     isMocked() {
         return this.config.getMocked();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     loadGapi() {
-        return new Observable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        (observer) => {
-            /** @type {?} */
-            let node = document.createElement('script');
+        return new Observable((observer) => {
+            const node = document.createElement('script');
             node.src = this.gapiUrl;
             node.type = 'text/javascript';
-            node.charset = 'utf-8';
             document.getElementsByTagName('head')[0].appendChild(node);
-            node.onload = (/**
-             * @return {?}
-             */
-            () => {
+            node.onload = () => {
                 observer.next(true);
                 observer.complete();
-            });
-        }));
+            };
+        });
     }
 }
-GoogleApiLoaderService.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-GoogleApiLoaderService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [NG_GAPI_CONFIG,] }] }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleApiLoaderService.prototype.gapiUrl;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleApiLoaderService.prototype.config;
-}
+/** @nocollapse */ GoogleApiLoaderService.ɵfac = function GoogleApiLoaderService_Factory(t) { return new (t || GoogleApiLoaderService)(i0.ɵɵinject(NG_GAPI_CONFIG)); };
+/** @nocollapse */ GoogleApiLoaderService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleApiLoaderService, factory: GoogleApiLoaderService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleApiLoaderService, [{
+        type: Injectable
+    }], function () { return [{ type: undefined, decorators: [{
+                type: Inject,
+                args: [NG_GAPI_CONFIG]
+            }] }]; }, null); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/services/google-auth2-loader.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
+/// <reference types="gapi.auth2" />
 class GoogleAuth2LoaderService {
-    /**
-     * @param {?} googleApi
-     */
     constructor(googleApi) {
         this.googleApi = googleApi;
         this.GoogleAuth = undefined;
-        this.googleApi.onLoad().subscribe((/**
-         * @return {?}
-         */
-        () => {
+        this.googleApi.onLoad().subscribe(() => {
             this.loadGoogleAuth2().subscribe();
-        }));
+        });
     }
-    /**
-     * @param {?=} newInstance
-     * @return {?}
-     */
     getAuth(newInstance = false) {
         if (!this.GoogleAuth || newInstance) {
             return this.googleApi.onLoad()
-                .pipe(mergeMap((/**
-             * @return {?}
-             */
-            () => this.loadGoogleAuth2())));
+                .pipe(mergeMap(() => this.loadGoogleAuth2()));
         }
         return of(this.GoogleAuth);
     }
-    /**
-     * @private
-     * @return {?}
-     */
     loadGoogleAuth2() {
-        return new Observable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        (observer) => {
-            gapi.load('auth2', (/**
-             * @return {?}
-             */
-            () => {
-                gapi.auth2.init(this.googleApi.getConfig().getClientConfig()).then((/**
-                 * @param {?} auth
-                 * @return {?}
-                 */
-                (auth) => {
+        return new Observable((observer) => {
+            gapi.load('auth2', () => {
+                gapi.auth2.init(this.googleApi.getConfig().getClientConfig()).then((auth) => {
                     this.GoogleAuth = auth;
                     observer.next(auth);
                     observer.complete();
-                })).catch((/**
-                 * @param {?} err
-                 * @return {?}
-                 */
-                (err) => observer.error(err)));
-            }));
-        }));
+                }).catch((err) => observer.error(err));
+            });
+        });
     }
 }
-GoogleAuth2LoaderService.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-GoogleAuth2LoaderService.ctorParameters = () => [
-    { type: GoogleApiLoaderService }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuth2LoaderService.prototype.GoogleAuth;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuth2LoaderService.prototype.googleApi;
-}
+/** @nocollapse */ GoogleAuth2LoaderService.ɵfac = function GoogleAuth2LoaderService_Factory(t) { return new (t || GoogleAuth2LoaderService)(i0.ɵɵinject(GoogleApiLoaderService)); };
+/** @nocollapse */ GoogleAuth2LoaderService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleAuth2LoaderService, factory: GoogleAuth2LoaderService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleAuth2LoaderService, [{
+        type: Injectable
+    }], function () { return [{ type: GoogleApiLoaderService }]; }, null); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/services/google-auth.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class GoogleAuthService {
-    /**
-     * @param {?} googleAuth2LoaderService
-     * @param {?} googleApiLoaderService
-     * @param {?} ngZone
-     */
     constructor(googleAuth2LoaderService, googleApiLoaderService, ngZone) {
         this.googleAuth2LoaderService = googleAuth2LoaderService;
         this.googleApiLoaderService = googleApiLoaderService;
         this.ngZone = ngZone;
         this._authState = new ReplaySubject(1);
+        this._loginState = new ReplaySubject(1);
+        this.SIGN_IN_EXPIRE_KEY = 'loginExpirationDate';
         if (this.googleApiLoaderService.isMocked()) {
             this.signIn();
         }
         else {
-            this.googleApiLoaderService.onLoad().subscribe((/**
-             * @return {?}
-             */
-            () => {
-                this.googleAuth2LoaderService.getAuth().subscribe((/**
-                 * @param {?} auth
-                 * @return {?}
-                 */
-                auth => {
-                    this.auth = auth;
-                    if (this.auth.currentUser.get().isSignedIn()) {
-                        this.refreshToken();
-                    }
-                    else {
-                        this._authState.next(null);
-                    }
-                }));
+            this.googleApiLoaderService.onLoad().subscribe(() => {
+                this.googleAuth2LoaderService.getAuth().subscribe(auth => this.authLoaded(auth), () => this.removeState());
                 interval(20 * 60 * 1000).pipe(// run every 20min
-                tap((/**
-                 * @return {?}
-                 */
-                () => this.refreshToken()))).subscribe();
-            }));
-        }
-    }
-    /**
-     * @return {?}
-     */
-    get authState() {
-        return this._authState.asObservable();
-    }
-    /**
-     * @return {?}
-     */
-    signIn() {
-        if (this.googleApiLoaderService.isMocked()) {
-            this._authState.next(JSON.parse(localStorage.getItem('user')));
-        }
-        else {
-            this.auth.signIn({
-                prompt: 'select_account',
-                ux_mode: 'redirect',
-                redirect_uri: window.location.origin
+                tap(() => this.refreshToken())).subscribe();
             });
         }
     }
-    /**
-     * @return {?}
-     */
+    get authState() {
+        return this._authState.asObservable();
+    }
+    get loginState() {
+        return this._loginState.asObservable();
+    }
+    signIn() {
+        if (this.googleApiLoaderService.isMocked()) {
+            this._loginState.next(JSON.parse(localStorage.getItem('user')));
+            this._authState.next(JSON.parse(localStorage.getItem('user')));
+        }
+        else {
+            const now = new Date();
+            const expirationDate = this.setTime(now, null, now.getMinutes() + 5);
+            localStorage.setItem(this.SIGN_IN_EXPIRE_KEY, expirationDate.toISOString());
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            this.auth.signIn({
+                prompt: 'select_account',
+                ux_mode: isSafari ? 'popup' : 'redirect',
+            }).then(() => this.fetchLoginData());
+        }
+    }
     signOut() {
         if (!this.googleApiLoaderService.isMocked()) {
             this.auth.signOut();
         }
-        this._authState.next(null);
+        this.removeState();
     }
-    /**
-     * @return {?}
-     */
+    fetchLoginData() {
+        return this.auth.currentUser.get().reloadAuthResponse().then(r => {
+            this.ngZone.run(() => {
+                this._loginState.next(this.getProfile(r.id_token, r.expires_at));
+                this._authState.next(this.getProfile(r.id_token, r.expires_at));
+            });
+        });
+    }
     refreshToken() {
-        return this.auth.currentUser.get().reloadAuthResponse().then((/**
-         * @param {?} r
-         * @return {?}
-         */
-        r => {
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => this._authState.next(this.getProfile(r.id_token, r.expires_at))));
-        }));
+        return this.auth.currentUser.get().reloadAuthResponse().then(r => {
+            this.ngZone.run(() => this._authState.next(this.getProfile(r.id_token, r.expires_at)));
+        });
     }
-    /**
-     * @private
-     * @param {?} token
-     * @param {?} expiresAt
-     * @return {?}
-     */
+    authLoaded(auth) {
+        this.auth = auth;
+        if (this.auth.currentUser.get().isSignedIn()) {
+            this.fetchLoginData();
+            localStorage.removeItem(this.SIGN_IN_EXPIRE_KEY);
+        }
+        else {
+            const signInDateExpireDate = new Date(localStorage.getItem(this.SIGN_IN_EXPIRE_KEY));
+            if (signInDateExpireDate > new Date()) {
+                this._loginState.next({ type: 'cookiesNotEnabled' });
+                this._authState.next(null);
+            }
+            else {
+                this.removeState();
+            }
+        }
+    }
+    removeState() {
+        this._authState.next(null);
+        this._loginState.next(null);
+    }
     getProfile(token, expiresAt) {
-        /** @type {?} */
         const p = this.auth.currentUser.get().getBasicProfile();
         return p ? {
             id: p.getId(),
@@ -416,57 +191,33 @@ class GoogleAuthService {
             lastName: p.getFamilyName(),
             avatar: p.getImageUrl(),
             idToken: token,
-            tokenExpiresAt: expiresAt
+            tokenExpiresAt: expiresAt,
         } : null;
     }
+    setTime(date, hours, minutes, seconds, milliseconds) {
+        const newDate = new Date(date);
+        if (typeof hours === 'number') {
+            newDate.setHours(hours);
+        }
+        if (typeof minutes === 'number') {
+            newDate.setMinutes(minutes);
+        }
+        if (typeof seconds === 'number') {
+            newDate.setSeconds(seconds);
+        }
+        if (typeof milliseconds === 'number') {
+            newDate.setMilliseconds(milliseconds);
+        }
+        return newDate;
+    }
 }
-GoogleAuthService.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-GoogleAuthService.ctorParameters = () => [
-    { type: GoogleAuth2LoaderService },
-    { type: GoogleApiLoaderService },
-    { type: NgZone }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuthService.prototype._authState;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuthService.prototype.auth;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuthService.prototype.googleAuth2LoaderService;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuthService.prototype.googleApiLoaderService;
-    /**
-     * @type {?}
-     * @private
-     */
-    GoogleAuthService.prototype.ngZone;
-}
+/** @nocollapse */ GoogleAuthService.ɵfac = function GoogleAuthService_Factory(t) { return new (t || GoogleAuthService)(i0.ɵɵinject(GoogleAuth2LoaderService), i0.ɵɵinject(GoogleApiLoaderService), i0.ɵɵinject(i0.NgZone)); };
+/** @nocollapse */ GoogleAuthService.ɵprov = i0.ɵɵdefineInjectable({ token: GoogleAuthService, factory: GoogleAuthService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleAuthService, [{
+        type: Injectable
+    }], function () { return [{ type: GoogleAuth2LoaderService }, { type: GoogleApiLoaderService }, { type: i0.NgZone }]; }, null); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: lib/common-util-google-oauth.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class GoogleOauthModule {
-    /**
-     * @param {?} gapiConfigProvider
-     * @return {?}
-     */
     static forRoot(gapiConfigProvider) {
         return {
             ngModule: GoogleOauthModule,
@@ -479,23 +230,20 @@ class GoogleOauthModule {
         };
     }
 }
-GoogleOauthModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ GoogleOauthModule.ɵfac = function GoogleOauthModule_Factory(t) { return new (t || GoogleOauthModule)(); };
+/** @nocollapse */ GoogleOauthModule.ɵmod = i0.ɵɵdefineNgModule({ type: GoogleOauthModule });
+/** @nocollapse */ GoogleOauthModule.ɵinj = i0.ɵɵdefineInjector({ imports: [[CommonModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(GoogleOauthModule, { imports: [CommonModule] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GoogleOauthModule, [{
+        type: NgModule,
+        args: [{
                 imports: [CommonModule]
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
-/**
- * @fileoverview added by tsickle
- * Generated from: ngx-gapi-auth2.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-export { AuthUser, GoogleApiConfig, GoogleApiLoaderService, GoogleAuth2LoaderService, GoogleAuthService, GoogleOauthModule, NG_GAPI_CONFIG };
+export { AuthData, GoogleApiConfig, GoogleApiLoaderService, GoogleAuth2LoaderService, GoogleAuthService, GoogleOauthModule, NG_GAPI_CONFIG };
 //# sourceMappingURL=ngx-gapi-auth2.js.map
